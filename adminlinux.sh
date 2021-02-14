@@ -15,6 +15,7 @@ Opciones:
     8-Trazar ruta
     9-Salir    
 ------------------
+Seleccione una opción:
 "
 
 echo "Bienvenido al menú de SysAdmin Linux."
@@ -112,9 +113,11 @@ case $opcion in
 #Revisar comando en máquina virtual. Debería valer.
 [6])
     clear
-    echo "Estos son los usuarios conectados actualmente:"
-    who -H
+    echo "Si la herramienta no funciona, ejecutar <sudo apt install finger en la terminal>"
     echo ""
+    echo "Estos son los usuarios conectados actualmente:"
+    #Se puede usar 'who' con un parámetro, pero es menos informativo.
+    finger -l
     sleep 3s
     clear
     echo "Elige otra opción."
@@ -133,16 +136,30 @@ case $opcion in
     read -p "$menu" opcion
     ;;
 #Menú de trazado de rutas ip o url
-#Traceroute?
+#Realpath ruta sistema de archivos.
+#
 [8])
     clear
-    read -p "Menú de trazado de rutas ip o url :" user
-        echo ""
-    sleep 3s
+    echo "Bienvenido al trazador de rutas."
+    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
+    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
+    echo "Introduce <menu> para volver al menú principal"
+    read destino
     clear
-    echo "Elige otra opción."
-    read -p "$menu" opcion
+    # >updatedb && locate $destino> es lo que sale en los apuntes
+    if [ "$destino" = "rutarchivo" ];
+        then
+            read -p "Introduce el archivo o directorio a buscar" destino
+        whereis $destino
+        elif [ "$destino" = "rutaip" ];
+         read -p "Introduce la página we o ip para trazar la ruta" destino
+        elif [ "$destino" = "menu" ]; 
+        clear
+        echo "Has vuelto al menu principal.Elige otra opción."
+    read -p "$menu" opcion;        
+    fi
     ;;
+#Dejar de usar SysAdmin Linux
 [9])
     clear
     echo "Gracias por utilizar SysAdmin Linux. Tenga un buen día."
@@ -150,6 +167,7 @@ case $opcion in
     clear
     exit
     ;;
+#Opción no recogida en 'case'
 *)
     clear
     echo "Opción desconocida. Por favor, elige un número del 1 al 9. Contacta con el administrador Senior si el problema persiste."
