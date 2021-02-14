@@ -42,7 +42,8 @@ case $opcion in
     groupadd $nuevogrupo
     useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
-    sleep 1s
+    sleep 3s
+    clear
     echo ""
     echo "Elige otra opción."
     read -p "$menu" opcion
@@ -50,34 +51,44 @@ case $opcion in
 #Menú de habilitación de usuario
 #Testado en repl.
 [2])
+    clear
     read -p "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
     sleep 1s
     passwd -u $user
     echo "El usuario <$user> ha sido deshabilitado"
     echo ""
+    sleep 3s
+    clear
     echo "Elige otra opción."
     read -p "$menu" opcion
     ;;
 #Menú de deshabilitación de usuario
 #Testado en repl.
 [3])
+    clear
     read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
-    sleep 1s
     passwd -l $user
     echo "El usuario <$user> ha sido deshabilitado"
     echo ""
+    sleep 3s
+    clear
     echo "Elige otra opción."
     read -p "$menu" opcion
     ;;
 #Cambiar permisos a un usuario
 #Investigar sobre permisos específicos de usuario y los comandos correspondientes.
 [4])
+    clear
     echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
     read -p "Primero Seleccione un usuario para cambiar sus permisos" user
     sleep 1s
     read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
     echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes"
     read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
+    #Falta comando
+    #Falta mensaje de confirmación
+    sleep 3s
+    clear
     echo ""
     echo "Elige otra opción."
     read -p "$menu" opcion
@@ -85,11 +96,14 @@ case $opcion in
 #Menú de copia de seguridad del directorio de trabajo de usuario
 #Testear en máquina virtual.
 [5])
+    clear
     read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
     sleep 1s
     echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
+    sleep 3s
+    clear
     echo ""
     echo "Elige otra opción."
     read -p "$menu" opcion
@@ -97,38 +111,47 @@ case $opcion in
 #Usuarios Online.
 #Revisar comando en máquina virtual. Debería valer.
 [6])
+    clear
     echo "Estos son los usuarios conectados actualmente:"
-    who -h
-    sleep 1s
+    who -H
     echo ""
+    sleep 3s
+    clear
     echo "Elige otra opción."
     read -p "$menu" opcion
     ;;
 #Menú de espacio libre en disco.
 #Investigar si se puede concretar más
 [7])
+    clear
     echo "Aquí podrá ver un resumen del uso del disco. La cantidad libre será mostrado bajo la columna <Available>" 
     df -h
-    sleep 1s
     echo ""
+    sleep 3s
+    clear
     echo "Elige otra opción."
     read -p "$menu" opcion
     ;;
 #Menú de trazado de rutas ip o url
 #Traceroute?
 [8])
+    clear
     read -p "Menú de trazado de rutas ip o url :" user
-    sleep 1s
-    echo ""
+        echo ""
+    sleep 3s
+    clear
     echo "Elige otra opción."
     read -p "$menu" opcion
     ;;
 [9])
-
+    clear
     echo "Gracias por utilizar SysAdmin Linux. Tenga un buen día."
+    sleep 3s
+    clear
     exit
     ;;
 *)
+    clear
     echo "Opción desconocida. Por favor, elige un número del 1 al 9. Contacta con el administrador Senior si el problema persiste."
     sleep 1s
     echo ""
