@@ -27,7 +27,7 @@ Seleccione una opción:
 
 ### 2.- Al pulsar (1) pedir por teclado el nombre de usuario y realizar lo necesario para crear el perfil de usuario en linux.
 ### 3.- Al pulsar (2), pedir por teclado el nombre de usuario y habilitarlo, si estaba previamente deshabilitado.
-### 4.- Al pulsar (3), solicitar por teclado el nombre de usuario y deshabilitar su cuenta.4.- Al pulsar (3), solicitar por teclado el nombre de usuario y deshabilitar su cuenta.
+### 4.- Al pulsar (3), solicitar por teclado el nombre de usuario y deshabilitar su cuenta.
 ### 5.- Al pulsar (4), diseñar un proceso para cambiar los permisos a un usuario. Será necesario pedir por teclado el nombre de usuario y los permisos que se quieran cambiar.
 ### 6.- Al pulsar (5), pedir el nombre de usuario y realizar copia de seguridad de todo su directorio de trabajo. 
 ### 7.- Al pulsar (6), mostrar en pantalla los usuarios conectados al sistema.
