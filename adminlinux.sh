@@ -147,17 +147,29 @@ case $opcion in
     read destino
     clear
     # >updatedb && locate $destino> es lo que sale en los apuntes
-    if [ "$destino" = "rutarchivo" ];
-        then
-            read -p "Introduce el archivo o directorio a buscar" destino
-        whereis $destino
-        elif [ "$destino" = "rutaip" ];
-         read -p "Introduce la página we o ip para trazar la ruta" destino
-        elif [ "$destino" = "menu" ]; 
-        clear
-        echo "Has vuelto al menu principal.Elige otra opción."
-    read -p "$menu" opcion;        
-    fi
+case $destino in 
+    rutarchivo)
+    read -p "Introduce el archivo o directorio a buscar" destino
+    whereis $destino
+    ;;
+
+    rutaip)
+    read -p "Introduce la página web o ip para trazar la ruta" destino
+    traceroute $destino
+    ;;
+
+    menu)
+    echo ""
+    ;;
+
+    *)
+    echo "Las opciones son rutarchivo, rutaip o menu"
+    ;;
+    esac
+
+    clear
+    echo "Has vuelto al menu principal.Elige otra opción."
+    read -p "$menu" opcion;
     ;;
 #Dejar de usar SysAdmin Linux
 [9])
