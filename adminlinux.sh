@@ -98,7 +98,7 @@ case $opcion in
 #Revisar comando en máquina virtual. Debería valer.
 [6])
     echo "Estos son los usuarios conectados actualmente:"
-    who -H
+    who -h
     sleep 1s
     echo ""
     echo "Elige otra opción."
