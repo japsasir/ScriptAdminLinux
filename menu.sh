@@ -12,9 +12,8 @@
 ####     7-Espacio libre en disco                          
 ####     8-Trazar ruta                                      
 ####     9-Salir  
-##
+####
 
-clear
 echo "##########################################################"
 echo "###   Administracion de sistemas informaticos en Red   ###"
 echo "###                  Script ASO.                       ###"
@@ -40,29 +39,21 @@ function crea_usuario() {
 #Habilitar un usuario
 function habilita_usuario() {
     read -p "Introduzca el nombre del usuario a habilitar: " usuario
-if [ $usuario -lt 1 ]
-then
-passwd -u $usuario
-fi
-if [ $exist -eq 0 ]
-then
-echo El usuario existe : 
-cat /etc/passwd | grep "$usuario" | cut -d ':' -f 6
-else
-echo El usuario "$usuario" no existe
-fi
-exit 0
-    sleep 1s
-    passwd -u $usuario
+if id -u "$usuario" >/dev/null 2>&1; 
+then passwd -u $usuario
     echo "El usuario <$usuario> ha sido habilitado"
+else echo "El usuario no existe" 
+fi
     echo ""
 }
 #Deshabilitar un usuario
 function deshabilita_usuario() {
-    read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
-    sleep 1s
-    passwd -l $user
-    echo "El usuario <$user> ha sido deshabilitado"
+    read -p "Introduzca el nombre del usuario a deshabilitar :" usuario
+if id -u "$usuario" >/dev/null 2>&1;
+    then passwd -l $usuario
+    echo "El usuario <$usuario> ha sido deshabilitado"
+    else "El usuario no existe"
+fi
     echo ""
 }
 #Cambiar permisos de usuario
