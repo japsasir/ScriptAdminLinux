@@ -29,7 +29,6 @@ function crea_usuario() {
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> con descripción:  <$descripcion>."
     sleep 1s
     echo ""
-    ;;
 }
 
 function cpu_check() {
