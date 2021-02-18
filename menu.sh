@@ -31,7 +31,7 @@ function crea_usuario() {
     echo ""
 }
 
-function cpu_check() {
+function habilita_usuario() {
     echo ""
 	echo "CPU load on ${server_name} is: "
     echo ""
@@ -39,7 +39,7 @@ function cpu_check() {
     echo ""
 }
 
-function tcp_check() {
+function deshabilita_usuario() {
     echo ""
 	echo "TCP connections on ${server_name}: "
     echo ""
@@ -47,7 +47,7 @@ function tcp_check() {
     echo ""
 }
 
-function kernel_check() {
+function permisos_usuario() {
     echo ""
 	echo "Kernel version on ${server_name} is: "
 	echo ""
@@ -55,11 +55,18 @@ function kernel_check() {
     echo ""
 }
 
-function all_checks() {
-	memory_check
-	cpu_check
-	tcp_check
-	kernel_check
+function copia_usuario() {
+
+}
+
+function conectado_usuario() {
+
+}
+function espacio_disco() {
+
+}
+function trazar_ruta() {
+
 }
 
 ##
@@ -106,7 +113,7 @@ $(ColorBlue 'Elija una opcion:') "
             9) salir ; menu ;;
             
 		0) exit 0 ;;
-		*) echo -e $red"Opcion incorrecta."$clear; WrongCommand;;
+		*) echo -e $red"Opcion incorrecta."$clear;
         esac
 }
 
