@@ -17,8 +17,8 @@ function crear_usuario() {
     useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
     sleep 10s
-    clear    
-    ;;
+    clear
+    menu  
 }
 #Función2 habilita_usuario
 function habilita_usuario() {
@@ -28,8 +28,8 @@ function habilita_usuario() {
     passwd -u $user
     echo "El usuario <$user> ha sido deshabilitado"
     sleep 10s
-    clear    
-    ;;
+    clear
+    menu 
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
@@ -39,8 +39,8 @@ function deshabilita_usuario() {
     echo "El usuario <$user> ha sido deshabilitado"
     echo ""
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 }
 #Función4 permisos_usuario
 function permisos_usuario() {
@@ -54,8 +54,8 @@ function permisos_usuario() {
     #Falta comando
     #Falta mensaje de confirmación
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 }
 #Función5 copia_usuario
 function copia_usuario() {
@@ -66,8 +66,8 @@ function copia_usuario() {
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 #Función6 conectado_usuario
 function conectado_usuario() {
     clear
@@ -77,17 +77,17 @@ function conectado_usuario() {
     #Se puede usar 'who' con un parámetro, pero es menos informativo.
     finger -l
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 }
 #Función7 espacio_disco
 function espacio_disco() {
     clear
     echo "Aquí podrá ver un resumen del uso del disco durante 15 segundos." 
     free -h
-    sleep 15s
-    clear 
-    ;;
+    sleep 10s
+    clear
+    menu 
 }
 #Función8 trazar_ruta
 function trazar_ruta() {
@@ -118,10 +118,9 @@ function trazar_ruta() {
     ;;
     esac
 
+    sleep 10s
     clear
-    echo "Has vuelto al menu principal.Elige otra opción."
-    read -p "$menu" opcion;
-    ;;
+    menu 
     # >updatedb && locate $destino> es lo que sale en los apuntes
     # Introducir variables
     # Los comandos son los correctos pero hace falta configurar subsecciones
