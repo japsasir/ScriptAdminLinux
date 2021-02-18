@@ -151,6 +151,7 @@ echo -ne "
 #############################################
 ##                                         ##
 ##         Menu administrador              ##
+##                                         ##
 ## $(ColorGreen '1)') Crear nuevo usuario                  ##
 ## $(ColorGreen '2)') Habilitar usuario                    ##
 ## $(ColorGreen '3)') Deshabilitar usuario                 ##
