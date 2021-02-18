@@ -5,10 +5,20 @@
 
 #Función1 crear_usuario
 function crear_usuario() {
+    clear
     echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    echo "Introduce el nombre del nuevo usuario:"
+    read nuevousuario
+    echo "Introduce el nombre de un grupo para el nuevo usuario $nuevousuario:"
+    read nuevogrupo
+    echo "Describe el nuevo usuario $nuevousuario del grupo $nuevogrupo. Por ejemplo, nombre completo y puesto:"
+    read descripcion
+    groupadd $nuevogrupo
+    useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
+    echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
+    sleep 10s
+    clear    
+    ;;
 }
 #Función2 habilita_usuario
 function habilita_usuario() {
@@ -45,7 +55,7 @@ function conectado_usuario() {
 	free -h
 	echo ""
 }
-#Función7 espacio_disco
+#Función7 espacio_disco free -h
 function espacio_disco() {
     echo ""
 	echo "Memory usage on ${server_name} is: "
@@ -103,8 +113,8 @@ $(ColorGreen '8)') Trazar ruta
 $(ColorGreen '0)') Salir
 ------------------
 $(ColorBlue 'Seleccione una opción:') "
-        read a
-        case $a in
+        read opcion
+        case $opcion in
 	        1) crear_usuario ; menu ;;
 	        2) habilita_usuario ; menu ;;
 	        3) deshabilita_usuario ; menu ;;
@@ -134,24 +144,7 @@ case $opcion in
 #Menú de creación de usuario
 ##FALLO DE MENU
 #Testado en repl.
-[1])
-    clear
-    echo
-    echo "Introduce el nombre del nuevo usuario:"
-    read nuevousuario
-    echo "Introduce el nombre de un grupo para el nuevo usuario $nuevousuario:"
-    read nuevogrupo
-    echo "Describe el nuevo usuario $nuevousuario del grupo $nuevogrupo. Por ejemplo, nombre completo y puesto:"
-    read descripcion
-    groupadd $nuevogrupo
-    useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
-    echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
-    sleep 3s
-    clear
-    echo ""
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
+
 #Menú de habilitación de usuario
 #Testado en repl.
 [2])
