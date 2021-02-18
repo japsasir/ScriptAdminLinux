@@ -63,6 +63,7 @@ function copia_usuario() {
     read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
     sleep 1s
     echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
+    mkdir /backup
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
     sleep 10s
