@@ -17,8 +17,8 @@ function crear_usuario() {
     useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
     sleep 10s
-    clear    
-    ;;
+    clear
+    menu  
 }
 #Función2 habilita_usuario
 function habilita_usuario() {
@@ -28,8 +28,8 @@ function habilita_usuario() {
     passwd -u $user
     echo "El usuario <$user> ha sido deshabilitado"
     sleep 10s
-    clear    
-    ;;
+    clear
+    menu 
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
@@ -39,8 +39,8 @@ function deshabilita_usuario() {
     echo "El usuario <$user> ha sido deshabilitado"
     echo ""
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 }
 #Función4 permisos_usuario
 function permisos_usuario() {
@@ -54,45 +54,78 @@ function permisos_usuario() {
     #Falta comando
     #Falta mensaje de confirmación
     sleep 10s
-    clear 
-    ;;
+    clear
+    menu 
 }
 #Función5 copia_usuario
 function copia_usuario() {
-    echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
-}
+    clear
+    read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
+    sleep 1s
+    echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
+    tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
+    echo "La copia de seguridad ha sido creada en /backup/$user"
+    sleep 10s
+    clear
+    menu 
 #Función6 conectado_usuario
 function conectado_usuario() {
+    clear
+    echo "Si la herramienta no funciona, ejecutar <sudo apt install finger en la terminal>"
     echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    echo "Estos son los usuarios conectados actualmente:"
+    #Se puede usar 'who' con un parámetro, pero es menos informativo.
+    finger -l
+    sleep 10s
+    clear
+    menu 
 }
-#Función7 espacio_disco free -h
+#Función7 espacio_disco
 function espacio_disco() {
-    echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    clear
+    echo "Aquí podrá ver un resumen del uso del disco durante 15 segundos." 
+    free -h
+    sleep 10s
+    clear
+    menu 
 }
 #Función8 trazar_ruta
 function trazar_ruta() {
-    echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
-}
-#Función copia_usuario 
-function copia_usuario() {
-    echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
-}
+    clear
+    echo "Bienvenido al trazador de rutas."
+    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
+    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
+    echo "Introduce <menu> para volver al menú principal"
+    read destino
+    clear
+    case $destino in 
+    rutarchivo)
+    read -p "Introduce el archivo o directorio a buscar" destino
+    whereis $destino
+    ;;
 
+    rutaip)
+    read -p "Introduce la página web o ip para trazar la ruta" destino
+    traceroute $destino
+    ;;
+
+    menu)
+    echo ""
+    ;;
+
+    *)
+    echo "Las opciones son rutarchivo, rutaip o menu"
+    ;;
+    esac
+
+    sleep 10s
+    clear
+    menu 
+    # >updatedb && locate $destino> es lo que sale en los apuntes
+    # Introducir variables
+    # Los comandos son los correctos pero hace falta configurar subsecciones
+
+}
 ##FUNCIÓN MENU Y AMIGOS##
 
 ##
@@ -143,9 +176,6 @@ $(ColorBlue 'Seleccione una opción:') "
 			*) echo -e $red"Opción incorrecta."$clear; WrongCommand;;
         esac
 }
-
-
-
 echo "Bienvenido al menú de SysAdmin Linux."
 echo ""
 echo "Este script le ayudará hasta que se familiarice
@@ -153,118 +183,7 @@ con los comandos de consola."
 echo ""
 echo "Asegúrese de haber lanzado el script con sudo."
 echo ""
+
+# Fecha y menú
 date
-sleep 1
-read -p "$menu" opcion
-case $opcion in
-#Menú de creación de usuario
-##FALLO DE MENU
-#Testado en repl.
-
-#Menú de habilitación de usuario
-#Testado en repl.
-
-#Menú de deshabilitación de usuario
-#Testado en repl.
-
-#Cambiar permisos a un usuario
-#Investigar sobre permisos específicos de usuario y los comandos correspondientes.
-
-#Menú de copia de seguridad del directorio de trabajo de usuario
-#Testear en máquina virtual.
-[5])
-    clear
-    read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
-    sleep 1s
-    echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
-    tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
-    echo "La copia de seguridad ha sido creada en /backup/$user"
-    sleep 3s
-    clear
-    echo ""
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
-#Usuarios Online.
-#Revisar comando en máquina virtual. Debería valer.
-[6])
-    clear
-    echo "Si la herramienta no funciona, ejecutar <sudo apt install finger en la terminal>"
-    echo ""
-    echo "Estos son los usuarios conectados actualmente:"
-    #Se puede usar 'who' con un parámetro, pero es menos informativo.
-    finger -l
-    sleep 3s
-    clear
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
-#Menú de espacio libre en disco.
-#Investigar si se puede concretar más
-[7])
-    clear
-    echo "Aquí podrá ver un resumen del uso del disco. La cantidad libre será mostrado bajo la columna <Available>" 
-    df -h
-    echo ""
-    sleep 3s
-    clear
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
-#Menú de trazado de rutas ip o url
-#Realpath ruta sistema de archivos.
-#
-[8])
-    clear
-    echo "Bienvenido al trazador de rutas."
-    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
-    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
-    echo "Introduce <menu> para volver al menú principal"
-    read destino
-    clear
-    # >updatedb && locate $destino> es lo que sale en los apuntes
-case $destino in 
-    rutarchivo)
-    read -p "Introduce el archivo o directorio a buscar" destino
-    whereis $destino
-    ;;
-
-    rutaip)
-    read -p "Introduce la página web o ip para trazar la ruta" destino
-    traceroute $destino
-    ;;
-
-    menu)
-    echo ""
-    ;;
-
-    *)
-    echo "Las opciones son rutarchivo, rutaip o menu"
-    ;;
-    esac
-
-    clear
-    echo "Has vuelto al menu principal.Elige otra opción."
-    read -p "$menu" opcion;
-    ;;
-#Dejar de usar SysAdmin Linux
-[9])
-    clear
-    echo "Gracias por utilizar SysAdmin Linux. Tenga un buen día."
-    sleep 3s
-    clear
-    exit
-    ;;
-#Opción no recogida en 'case'
-*)
-    clear
-    echo "Opción desconocida. Por favor, elige un número del 1 al 9. Contacta con el administrador Senior si el problema persiste."
-    sleep 1s
-    echo ""
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
-esac
-
-# Se llama a la función menú
-menu
+menu 
