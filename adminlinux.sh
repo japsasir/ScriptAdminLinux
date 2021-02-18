@@ -22,24 +22,40 @@ function crear_usuario() {
 }
 #Función2 habilita_usuario
 function habilita_usuario() {
+    clear
     echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    read -p "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
+    passwd -u $user
+    echo "El usuario <$user> ha sido deshabilitado"
+    sleep 10s
+    clear    
+    ;;
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
+    clear
+    read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
+    passwd -l $user
+    echo "El usuario <$user> ha sido deshabilitado"
     echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    sleep 10s
+    clear 
+    ;;
 }
 #Función4 permisos_usuario
 function permisos_usuario() {
-    echo ""
-	echo "Memory usage on ${server_name} is: "
-	free -h
-	echo ""
+    clear
+    echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
+    read -p "Primero Seleccione un usuario para cambiar sus permisos" user
+    sleep 1s
+    read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
+    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes" #Los permisos
+    read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
+    #Falta comando
+    #Falta mensaje de confirmación
+    sleep 10s
+    clear 
+    ;;
 }
 #Función5 copia_usuario
 function copia_usuario() {
@@ -147,49 +163,13 @@ case $opcion in
 
 #Menú de habilitación de usuario
 #Testado en repl.
-[2])
-    clear
-    read -p "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
-    sleep 1s
-    passwd -u $user
-    echo "El usuario <$user> ha sido deshabilitado"
-    echo ""
-    sleep 3s
-    clear
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
+
 #Menú de deshabilitación de usuario
 #Testado en repl.
-[3])
-    clear
-    read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
-    passwd -l $user
-    echo "El usuario <$user> ha sido deshabilitado"
-    echo ""
-    sleep 3s
-    clear
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
+
 #Cambiar permisos a un usuario
 #Investigar sobre permisos específicos de usuario y los comandos correspondientes.
-[4])
-    clear
-    echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
-    read -p "Primero Seleccione un usuario para cambiar sus permisos" user
-    sleep 1s
-    read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
-    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes" #Los permisos
-    read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
-    #Falta comando
-    #Falta mensaje de confirmación
-    sleep 3s
-    clear
-    echo ""
-    echo "Elige otra opción."
-    read -p "$menu" opcion
-    ;;
+
 #Menú de copia de seguridad del directorio de trabajo de usuario
 #Testear en máquina virtual.
 [5])
