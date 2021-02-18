@@ -56,17 +56,17 @@ function permisos_usuario() {
 }
 
 function copia_usuario() {
-
+    echo ""
 }
 
 function conectado_usuario() {
-
+    echo ""
 }
 function espacio_disco() {
-
+    echo ""
 }
 function trazar_ruta() {
-
+    echo ""
 }
 
 ##
