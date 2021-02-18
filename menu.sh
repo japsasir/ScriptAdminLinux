@@ -36,6 +36,7 @@ function crea_usuario() {
     sleep 1s
     echo ""
     sleep 4s
+    clear
 }
 #Habilitar un usuario
 function habilita_usuario() {
@@ -47,6 +48,7 @@ else echo "El usuario no existe"
 fi
     echo ""
     sleep 4s
+        clear
 }
 #Deshabilitar un usuario
 function deshabilita_usuario() {
@@ -58,6 +60,7 @@ if id -u "$usuario" >/dev/null 2>&1;
 fi
     echo ""
 sleep 4s
+    clear
 }
 #Cambiar permisos de usuario
 function permisos_usuario() {
@@ -69,6 +72,7 @@ function permisos_usuario() {
     read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
     echo ""
     sleep 4s
+        clear
 }
 #Copia de seguridad
 function copia_usuario() {
@@ -77,6 +81,7 @@ function copia_usuario() {
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
     sleep 4s
+        clear
 }
 #Usuario logueados
 function conectado_usuario() {
@@ -85,6 +90,7 @@ function conectado_usuario() {
     sleep 1s
     echo ""
     sleep 4s
+        clear
 }
 #Espacio libre en disco.
 function espacio_disco() {
@@ -93,6 +99,7 @@ function espacio_disco() {
     sleep 1s
     echo ""
     sleep 4s
+        clear
 }
 #Trazado de rutas ip o url
 function trazar_ruta() {
@@ -124,6 +131,7 @@ case $destino in
     ;;
     esac
     sleep 4s
+        clear
 }
 
 ##
