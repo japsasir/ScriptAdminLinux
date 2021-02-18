@@ -1,6 +1,50 @@
 #!/bin/bash
 ###Este script está diseñado para un administrador de sistemas Linux a modo de documentación ejecutable.
 #Función de menú para usuario
+
+
+#Función menú
+menu(){
+echo -ne "
+------------------
+Opciones:
+$(ColorGreen '1)') Crear usuario
+$(ColorGreen '2)') Habilitar usuario
+$(ColorGreen '3)') Deshabilitar usuario
+$(ColorGreen '4)') Cambiar permisos a un usuario
+$(ColorGreen '5)') Copia de seguridad del directorio de trabajo de un usuario determinado
+$(ColorGreen '6)') Usuarios conectados actualmente
+$(ColorGreen '7)') Espacio libre en disco
+$(ColorGreen '8)') Trazar ruta
+
+$(ColorGreen '0)') Salir
+------------------
+$(ColorBlue 'Seleccione una opción:') "
+        read a
+        case $a in
+	        1) crear_usuario ; menu ;;
+	        2) habilita_usuario ; menu ;;
+	        3) deshabilita_usuario ; menu ;;
+	        4) permisos_usuario ; menu ;;
+	        5) copia_usuario ; menu ;;
+            6) conectado_usuario ; menu ;;
+            7) espacio_disco ; menu ;;
+            8) trazar_ruta ; menu ;;
+			0) exit 0 ;;
+			*) echo -e $red"Opción incorrecta."$clear; WrongCommand;;
+        esac
+}
+
+
+
+
+
+
+
+
+
+
+
 menu="
 ------------------
 Opciones:
@@ -30,6 +74,7 @@ sleep 1
 read -p "$menu" opcion
 case $opcion in
 #Menú de creación de usuario
+##FALLO DE MENU
 #Testado en repl.
 [1])
     clear
@@ -84,7 +129,7 @@ case $opcion in
     read -p "Primero Seleccione un usuario para cambiar sus permisos" user
     sleep 1s
     read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
-    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes"
+    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes" #Los permisos
     read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
     #Falta comando
     #Falta mensaje de confirmación
