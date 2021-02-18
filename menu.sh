@@ -14,7 +14,7 @@
 ####     9-Salir  
 ##
 
-server_name=$(hostname)
+nombre_equipo=$(hostname)
 
 function crea_usuario() {
     echo
@@ -64,7 +64,7 @@ function all_checks() {
 }
 
 ##
-# Color  Variables
+# Colores  Variables
 ##
 green='\e[32m'
 blue='\e[34m'
