@@ -35,6 +35,7 @@ function crea_usuario() {
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> con descripción:  <$descripcion>."
     sleep 1s
     echo ""
+    sleep 4s
 }
 #Habilitar un usuario
 function habilita_usuario() {
@@ -45,16 +46,18 @@ then passwd -u $usuario
 else echo "El usuario no existe" 
 fi
     echo ""
+    sleep 4s
 }
 #Deshabilitar un usuario
 function deshabilita_usuario() {
-    read -p "Introduzca el nombre del usuario a deshabilitar :" usuario
+    read -p "Introduzca el nombre del usuario a deshabilitar: " usuario
 if id -u "$usuario" >/dev/null 2>&1;
     then passwd -l $usuario
     echo "El usuario <$usuario> ha sido deshabilitado"
     else "El usuario no existe"
 fi
     echo ""
+sleep 4s
 }
 #Cambiar permisos de usuario
 function permisos_usuario() {
@@ -65,6 +68,7 @@ function permisos_usuario() {
     echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes"
     read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
     echo ""
+    sleep 4s
 }
 #Copia de seguridad
 function copia_usuario() {
@@ -72,6 +76,7 @@ function copia_usuario() {
     echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
+    sleep 4s
 }
 #Usuario logueados
 function conectado_usuario() {
@@ -79,6 +84,7 @@ function conectado_usuario() {
     who -h
     sleep 1s
     echo ""
+    sleep 4s
 }
 #Espacio libre en disco.
 function espacio_disco() {
@@ -86,6 +92,7 @@ function espacio_disco() {
     df -h
     sleep 1s
     echo ""
+    sleep 4s
 }
 #Trazado de rutas ip o url
 function trazar_ruta() {
@@ -94,6 +101,7 @@ function trazar_ruta() {
     echo "Introduce <rutaip> para buscar la ruta a una web o url" 
     echo "Introduce <menu> para volver al menú principal"
     read destino
+    sleep 4s
     clear
     # >updatedb && locate $destino> es lo que sale en los apuntes
 case $destino in 
@@ -115,6 +123,7 @@ case $destino in
     echo "Las opciones son rutarchivo, rutaip o menu"
     ;;
     esac
+    sleep 4s
 }
 
 ##
