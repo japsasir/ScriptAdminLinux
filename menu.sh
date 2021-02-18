@@ -68,12 +68,10 @@ function permisos_usuario() {
 }
 #Copia de seguridad
 function copia_usuario() {
-    read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
-    sleep 1s
+ read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
     echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
-    echo ""
 }
 #Usuario logueados
 function conectado_usuario() {
