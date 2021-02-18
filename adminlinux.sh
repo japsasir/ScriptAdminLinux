@@ -85,7 +85,7 @@ function conectado_usuario() {
 #Función7 espacio_disco
 function espacio_disco() {
     clear
-    echo "Aquí podrá ver un resumen del uso del disco durante 15 segundos."
+    echo "Aquí podrá ver un resumen del uso del disco durante 10 segundos."
     free -h
     sleep 10s
     clear
@@ -167,35 +167,35 @@ $(ColorBlue 'Seleccione una opción:') "
     read opcion
     case $opcion in
     1)
-        crear_usuario
+        crear_usuario;
         menu
         ;;
     2)
-        habilita_usuario
+        habilita_usuario;
         menu
         ;;
     3)
-        deshabilita_usuario
+        deshabilita_usuario;
         menu
         ;;
     4)
-        permisos_usuario
+        permisos_usuario;
         menu
         ;;
     5)
-        copia_usuario
+        copia_usuario;
         menu
         ;;
     6)
-        conectado_usuario
+        conectado_usuario;
         menu
         ;;
     7)
-        espacio_disco
+        espacio_disco;
         menu
         ;;
     8)
-        trazar_ruta
+        trazar_ruta;
         menu
         ;;
     0) exit 0 ;;
@@ -215,4 +215,5 @@ echo "Asegúrese de haber lanzado el script con sudo."
 echo ""
 
 # Menú
+clear
 menu
