@@ -85,23 +85,31 @@ menu(){
 echo -ne "
 Menu administrador
 $(ColorGreen '1)') Crear nuevo usuario
-$(ColorGreen '2)') CPU load
-$(ColorGreen '3)') Number of TCP connections 
-$(ColorGreen '4)') Kernel version
-$(ColorGreen '5)') Check All
-$(ColorGreen '0)') Exit
-$(ColorBlue 'Choose an option:') "
+$(ColorGreen '2)') Habilitar usuario
+$(ColorGreen '3)') Deshabilitar usuario
+$(ColorGreen '4)') Permisos de usuario
+$(ColorGreen '5)') Copia usuario
+$(ColorGreen '6)') Conectar usuario
+$(ColorGreen '7)') Espacio de disco
+$(ColorGreen '8)') Trazar ruta
+$(ColorGreen '0)') Salir
+$(ColorBlue 'Elija una opcion:') "
         read a
         case $a in
 	        1) crea_usuario ; menu ;;
-	        2) cpu_check ; menu ;;
-	        3) tcp_check ; menu ;;
-	        4) kernel_check ; menu ;;
-	        5) all_checks ; menu ;;
+	        2) habilita_usuario ; menu ;;
+	        3) deshabilita_usuario ; menu ;;
+	        4) permisos_usuario ; menu ;;
+	        5) copia_usuario ; menu ;;
+            6) conectado_usuario ; menu ;;
+            7) espacio_disco ; menu ;;
+            8) trazar_ruta ; menu ;;
+            9) salir ; menu ;;
+            
 		0) exit 0 ;;
-		*) echo -e $red"Wrong option."$clear; WrongCommand;;
+		*) echo -e $red"Opcion incorrecta."$clear; WrongCommand;;
         esac
 }
 
-# Call the menu function
+# Llamada a menu
 menu
