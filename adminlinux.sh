@@ -183,5 +183,7 @@ con los comandos de consola."
 echo ""
 echo "Asegúrese de haber lanzado el script con sudo."
 echo ""
+
+# Fecha y menú
 date
 menu 
