@@ -2,6 +2,23 @@
 ###Este script está diseñado para un administrador de sistemas Linux a modo de documentación ejecutable.
 #Función de menú para usuario
 
+##
+# Variables color
+##
+green='\e[32m'
+blue='\e[34m'
+clear='\e[0m'
+
+##
+# Funciones color
+##
+
+ColorGreen(){
+	echo -ne $green$1$clear
+}
+ColorBlue(){
+	echo -ne $blue$1$clear
+}
 
 #Función menú
 menu(){
@@ -35,6 +52,16 @@ $(ColorBlue 'Seleccione una opción:') "
         esac
 }
 
+
+#Función1 crear_usuario
+#Función2 habilita_usuario
+#Función3 deshabilitar_usuario
+#Función4 permisos_usuario
+#Función5 copia_usuario
+#Función6 conectado_usuario
+#Función7 espacio_disco
+#Función8 trazar_ruta
+#Función copia_usuario 
 
 
 
