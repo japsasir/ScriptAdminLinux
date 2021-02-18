@@ -151,15 +151,15 @@ echo -ne "
 #############################################
 ##                                         ##
 ##         Menu administrador              ##
-## $(ColorGreen '1)') Crear nuevo usuario  ##
-## $(ColorGreen '2)') Habilitar usuario    ##
-## $(ColorGreen '3)') Deshabilitar usuario ##
-## $(ColorGreen '4)') Permisos de usuario  ##
-## $(ColorGreen '5)') Copia usuario        ##
-## $(ColorGreen '6)') Conectar usuario     ##
-## $(ColorGreen '7)') Espacio de disco     ##
-## $(ColorGreen '8)') Trazar ruta          ##
-## $(ColorGreen '0)') Salir                ##
+## $(ColorGreen '1)') Crear nuevo usuario                  ##
+## $(ColorGreen '2)') Habilitar usuario                    ##
+## $(ColorGreen '3)') Deshabilitar usuario                 ##
+## $(ColorGreen '4)') Permisos de usuario                  ##
+## $(ColorGreen '5)') Copia usuario                        ##
+## $(ColorGreen '6)') Conectar usuario                     ##
+## $(ColorGreen '7)') Espacio de disco                     ##
+## $(ColorGreen '8)') Trazar ruta                          ##
+## $(ColorGreen '0)') Salir                                ##
 #############################################
 $(ColorBlue 'Elija una opcion:') "
 
