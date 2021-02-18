@@ -100,9 +100,32 @@ function espacio_disco() {
 }
 #Trazado de rutas ip o url
 function trazar_ruta() {
-    read -p "Menú de trazado de rutas ip o url :" user
-    sleep 1s
+    echo "Bienvenido al trazador de rutas."
+    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
+    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
+    echo "Introduce <menu> para volver al menú principal"
+    read destino
+    clear
+    # >updatedb && locate $destino> es lo que sale en los apuntes
+case $destino in 
+    rutarchivo)
+    read -p "Introduce el archivo o directorio a buscar" destino
+    whereis $destino
+    ;;
+
+    rutaip)
+    read -p "Introduce la página web o ip para trazar la ruta" destino
+    traceroute $destino
+    ;;
+
+    menu)
     echo ""
+    ;;
+
+    *)
+    echo "Las opciones son rutarchivo, rutaip o menu"
+    ;;
+    esac
 }
 
 ##
@@ -125,17 +148,22 @@ ColorBlue(){
 
 menu(){
 echo -ne "
-Menu administrador
-$(ColorGreen '1)') Crear nuevo usuario
-$(ColorGreen '2)') Habilitar usuario
-$(ColorGreen '3)') Deshabilitar usuario
-$(ColorGreen '4)') Permisos de usuario
-$(ColorGreen '5)') Copia usuario
-$(ColorGreen '6)') Conectar usuario
-$(ColorGreen '7)') Espacio de disco
-$(ColorGreen '8)') Trazar ruta
-$(ColorGreen '0)') Salir
+#############################################
+##                                         ##
+##         Menu administrador              ##
+##                                         ##
+## $(ColorGreen '1)') Crear nuevo usuario                  ##
+## $(ColorGreen '2)') Habilitar usuario                    ##
+## $(ColorGreen '3)') Deshabilitar usuario                 ##
+## $(ColorGreen '4)') Permisos de usuario                  ##
+## $(ColorGreen '5)') Copia usuario                        ##
+## $(ColorGreen '6)') Conectar usuario                     ##
+## $(ColorGreen '7)') Espacio de disco                     ##
+## $(ColorGreen '8)') Trazar ruta                          ##
+## $(ColorGreen '0)') Salir                                ##
+#############################################
 $(ColorBlue 'Elija una opcion:') "
+
         read a
         case $a in
 	        1) crea_usuario ; menu ;;
