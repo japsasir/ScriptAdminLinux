@@ -14,13 +14,14 @@
 ####     9-Salir  
 ##
 
-echo "**********************************************************"
-echo "***   Administracion de sistemas informaticos en Red   ***"
-echo "***                  Script ASO.                       ***"
-echo "***            Jacobo Azmani Gonzalez                  ***"
-echo "***                                                    ***"
-echo "***                                                    ***"
-echo "**********************************************************"
+clear
+echo "##########################################################"
+echo "###   Administracion de sistemas informaticos en Red   ###"
+echo "###                  Script ASO.                       ###"
+echo "###            Jacobo Azmani Gonzalez                  ###"
+echo "###                                                    ###"
+echo "###                                                    ###"
+echo "##########################################################"
 #Creacion de usuario
 function crea_usuario() {
     echo
