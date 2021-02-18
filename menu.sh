@@ -21,7 +21,7 @@ echo "***            Jacobo Azmani Gonzalez                  ***"
 echo "***                                                    ***"
 echo "***                                                    ***"
 echo "**********************************************************"
-
+#Creacion de usuario
 function crea_usuario() {
     echo
     echo "Introduce el nuevo usuario:"
@@ -36,42 +36,72 @@ function crea_usuario() {
     sleep 1s
     echo ""
 }
-
+#Habilitar un usuario
 function habilita_usuario() {
-    echo ""
-	echo "CPU load on ${server_name} is: "
-    echo ""
-	uptime
+    read -p "Introduzca el nombre del usuario a habilitar: " usuario
+if [ $usuario -lt 1 ]
+then
+passwd -u $usuario
+fi
+cat /etc/passwd | grep "$usuario" > /dev/null && exist=0 || exist=1
+if [ $exist -eq 0 ]
+then
+echo El usuario existe : 
+cat /etc/passwd | grep "$usuario" | cut -d ':' -f 6
+else
+echo El usuario "$usuario" no existe
+fi
+exit 0
+    sleep 1s
+    passwd -u $user
+    echo "El usuario <$user> ha sido deshabilitado"
     echo ""
 }
-
+#Deshabilitar un usuario
 function deshabilita_usuario() {
-    echo ""
-	echo "TCP connections on ${server_name}: "
-    echo ""
-	cat  /proc/net/tcp | wc -l
+    read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
+    sleep 1s
+    passwd -l $user
+    echo "El usuario <$user> ha sido deshabilitado"
     echo ""
 }
-
+#Cambiar permisos de usuario
 function permisos_usuario() {
-    echo ""
-	echo "Kernel version on ${server_name} is: "
-	echo ""
-	uname -r
+    echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
+    read -p "Primero Seleccione un usuario para cambiar sus permisos" user
+    sleep 1s
+    read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
+    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes"
+    read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
     echo ""
 }
-
+#Copia de seguridad
 function copia_usuario() {
+    read -p "Menú de copias de seguridad. Introduce un usuario para hacer una copia de seguridad de su directorio /home. :" user
+    sleep 1s
+    echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
+    tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
+    echo "La copia de seguridad ha sido creada en /backup/$user"
     echo ""
 }
-
+#Usuario logueados
 function conectado_usuario() {
+    echo "Estos son los usuarios conectados actualmente:"
+    who -h
+    sleep 1s
     echo ""
 }
+#Espacio libre en disco.
 function espacio_disco() {
+    echo "Aquí podrá ver un resumen del uso del disco. La cantidad libre será mostrado bajo la columna <Available>" 
+    df -h
+    sleep 1s
     echo ""
 }
+#Trazado de rutas ip o url
 function trazar_ruta() {
+    read -p "Menú de trazado de rutas ip o url :" user
+    sleep 1s
     echo ""
 }
 
