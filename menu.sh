@@ -43,7 +43,6 @@ if [ $usuario -lt 1 ]
 then
 passwd -u $usuario
 fi
-cat /etc/passwd | grep "$usuario" > /dev/null && exist=0 || exist=1
 if [ $exist -eq 0 ]
 then
 echo El usuario existe : 
@@ -53,8 +52,8 @@ echo El usuario "$usuario" no existe
 fi
 exit 0
     sleep 1s
-    passwd -u $user
-    echo "El usuario <$user> ha sido deshabilitado"
+    passwd -u $usuario
+    echo "El usuario <$usuario> ha sido habilitado"
     echo ""
 }
 #Deshabilitar un usuario
