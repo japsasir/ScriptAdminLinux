@@ -1,6 +1,73 @@
 #!/bin/bash
 ###Este script está diseñado para un administrador de sistemas Linux a modo de documentación ejecutable.
-#Función de menú para usuario
+
+##FUNCIONES GENERALES##
+
+#Función1 crear_usuario
+function crear_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función2 habilita_usuario
+function habilita_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función3 deshabilitar_usuario
+function deshabilita_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función4 permisos_usuario
+function permisos_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función5 copia_usuario
+function copia_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función6 conectado_usuario
+function conectado_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función7 espacio_disco
+function espacio_disco() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función8 trazar_ruta
+function trazar_ruta() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+#Función copia_usuario 
+function copia_usuario() {
+    echo ""
+	echo "Memory usage on ${server_name} is: "
+	free -h
+	echo ""
+}
+
+##FUNCIÓN MENU Y AMIGOS##
 
 ##
 # Variables color
@@ -33,7 +100,6 @@ $(ColorGreen '5)') Copia de seguridad del directorio de trabajo de un usuario de
 $(ColorGreen '6)') Usuarios conectados actualmente
 $(ColorGreen '7)') Espacio libre en disco
 $(ColorGreen '8)') Trazar ruta
-
 $(ColorGreen '0)') Salir
 ------------------
 $(ColorBlue 'Seleccione una opción:') "
@@ -53,41 +119,6 @@ $(ColorBlue 'Seleccione una opción:') "
 }
 
 
-#Función1 crear_usuario
-#Función2 habilita_usuario
-#Función3 deshabilitar_usuario
-#Función4 permisos_usuario
-#Función5 copia_usuario
-#Función6 conectado_usuario
-#Función7 espacio_disco
-#Función8 trazar_ruta
-#Función copia_usuario 
-
-
-
-
-
-
-
-
-
-
-menu="
-------------------
-Opciones:
-    1-Crear usuario
-    2-Habilitar usuario
-    3-Deshabilitar usuario
-    4-Cambiar permisos a un usuario
-    5-Copia de seguridad del directorio de trabajo
-    de un usuario determinado
-    6-Usuarios conectados actualmente
-    7-Espacio libre en disco
-    8-Trazar ruta
-    9-Salir    
-------------------
-Seleccione una opción:
-"
 
 echo "Bienvenido al menú de SysAdmin Linux."
 echo ""
@@ -261,3 +292,6 @@ case $destino in
     read -p "$menu" opcion
     ;;
 esac
+
+# Se llama a la función menú
+menu
