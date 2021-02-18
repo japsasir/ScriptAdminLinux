@@ -18,7 +18,7 @@ function crear_usuario() {
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
     sleep 10s
     clear
-    menu  
+    menu
 }
 #Función2 habilita_usuario
 function habilita_usuario() {
@@ -29,7 +29,7 @@ function habilita_usuario() {
     echo "El usuario <$user> ha sido deshabilitado"
     sleep 10s
     clear
-    menu 
+    menu
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
@@ -40,7 +40,7 @@ function deshabilita_usuario() {
     echo ""
     sleep 10s
     clear
-    menu 
+    menu
 }
 #Función4 permisos_usuario
 function permisos_usuario() {
@@ -55,7 +55,7 @@ function permisos_usuario() {
     #Falta mensaje de confirmación
     sleep 10s
     clear
-    menu 
+    menu
 }
 #Función5 copia_usuario
 function copia_usuario() {
@@ -67,7 +67,8 @@ function copia_usuario() {
     echo "La copia de seguridad ha sido creada en /backup/$user"
     sleep 10s
     clear
-    menu 
+    menu
+}
 #Función6 conectado_usuario
 function conectado_usuario() {
     clear
@@ -78,49 +79,49 @@ function conectado_usuario() {
     finger -l
     sleep 10s
     clear
-    menu 
+    menu
 }
 #Función7 espacio_disco
 function espacio_disco() {
     clear
-    echo "Aquí podrá ver un resumen del uso del disco durante 15 segundos." 
+    echo "Aquí podrá ver un resumen del uso del disco durante 15 segundos."
     free -h
     sleep 10s
     clear
-    menu 
+    menu
 }
 #Función8 trazar_ruta
 function trazar_ruta() {
     clear
     echo "Bienvenido al trazador de rutas."
-    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
-    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
+    echo "Introduce <rutarchivo> para buscar en el sistema de archivos"
+    echo "Introduce <rutaip> para buscar la ruta a una web o url"
     echo "Introduce <menu> para volver al menú principal"
     read destino
     clear
-    case $destino in 
+    case $destino in
     rutarchivo)
-    read -p "Introduce el archivo o directorio a buscar" destino
-    whereis $destino
-    ;;
+        read -p "Introduce el archivo o directorio a buscar" destino
+        whereis $destino
+        ;;
 
     rutaip)
-    read -p "Introduce la página web o ip para trazar la ruta" destino
-    traceroute $destino
-    ;;
+        read -p "Introduce la página web o ip para trazar la ruta" destino
+        traceroute $destino
+        ;;
 
     menu)
-    echo ""
-    ;;
+        echo ""
+        ;;
 
     *)
-    echo "Las opciones son rutarchivo, rutaip o menu"
-    ;;
+        echo "Las opciones son rutarchivo, rutaip o menu"
+        ;;
     esac
 
     sleep 10s
     clear
-    menu 
+    menu
     # >updatedb && locate $destino> es lo que sale en los apuntes
     # Introducir variables
     # Los comandos son los correctos pero hace falta configurar subsecciones
@@ -139,16 +140,16 @@ clear='\e[0m'
 # Funciones color
 ##
 
-ColorGreen(){
-	echo -ne $green$1$clear
+ColorGreen() {
+    echo -ne $green$1$clear
 }
-ColorBlue(){
-	echo -ne $blue$1$clear
+ColorBlue() {
+    echo -ne $blue$1$clear
 }
 
 #Función menú
-menu(){
-echo -ne "
+menu() {
+    echo -ne "
 ------------------
 Opciones:
 $(ColorGreen '1)') Crear usuario
@@ -162,19 +163,46 @@ $(ColorGreen '8)') Trazar ruta
 $(ColorGreen '0)') Salir
 ------------------
 $(ColorBlue 'Seleccione una opción:') "
-        read opcion
-        case $opcion in
-	        1) crear_usuario ; menu ;;
-	        2) habilita_usuario ; menu ;;
-	        3) deshabilita_usuario ; menu ;;
-	        4) permisos_usuario ; menu ;;
-	        5) copia_usuario ; menu ;;
-            6) conectado_usuario ; menu ;;
-            7) espacio_disco ; menu ;;
-            8) trazar_ruta ; menu ;;
-			0) exit 0 ;;
-			*) echo -e $red"Opción incorrecta."$clear; WrongCommand;;
-        esac
+    read opcion
+    case $opcion in
+    1)
+        crear_usuario
+        menu
+        ;;
+    2)
+        habilita_usuario
+        menu
+        ;;
+    3)
+        deshabilita_usuario
+        menu
+        ;;
+    4)
+        permisos_usuario
+        menu
+        ;;
+    5)
+        copia_usuario
+        menu
+        ;;
+    6)
+        conectado_usuario
+        menu
+        ;;
+    7)
+        espacio_disco
+        menu
+        ;;
+    8)
+        trazar_ruta
+        menu
+        ;;
+    0) exit 0 ;;
+    *)
+        echo -e $red"Opción incorrecta."$clear
+        WrongCommand
+        ;;
+    esac
 }
 
 echo "Bienvenido al menú de SysAdmin Linux."
@@ -186,4 +214,4 @@ echo "Asegúrese de haber lanzado el script con sudo."
 echo ""
 
 # Menú
-menu 
+menu
