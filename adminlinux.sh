@@ -176,6 +176,7 @@ $(ColorBlue 'Seleccione una opción:') "
 			*) echo -e $red"Opción incorrecta."$clear; WrongCommand;;
         esac
 }
+
 echo "Bienvenido al menú de SysAdmin Linux."
 echo ""
 echo "Este script le ayudará hasta que se familiarice
@@ -184,6 +185,5 @@ echo ""
 echo "Asegúrese de haber lanzado el script con sudo."
 echo ""
 
-# Fecha y menú
-date
+# Menú
 menu 
