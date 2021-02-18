@@ -14,7 +14,13 @@
 ####     9-Salir  
 ##
 
-nombre_equipo=$(hostname)
+echo "**********************************************************"
+echo "***   Administracion de sistemas informaticos en Red   ***"
+echo "***                  Script ASO.                       ***"
+echo "***            Jacobo Azmani Gonzalez                  ***"
+echo "***                                                    ***"
+echo "***                                                    ***"
+echo "**********************************************************"
 
 function crea_usuario() {
     echo
