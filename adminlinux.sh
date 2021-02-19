@@ -32,7 +32,8 @@ fi
 function habilita_usuario() {
     clear
     echo ""
-    echo"Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
+    echo"Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:"
+    read user
 if  id -u "$user" >/dev/null 2>&1;
 then
     passwd -u $user
@@ -46,7 +47,9 @@ fi
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
     clear
-    read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
+    echo "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :"
+    echo ""
+    read user
 
 if  id -u "$user" >/dev/null 2>&1;
 then
@@ -74,7 +77,6 @@ function permisos_usuario() {
     #Falta mensaje de confirmación
     sleep 10s
     clear
-    menu
 }
 #Función5 copia_usuario
 function copia_usuario() {
@@ -116,16 +118,20 @@ function trazar_ruta() {
     clear
     case $destino in
     rutarchivo)
-        read -p "Introduce el archivo o directorio a buscar" destino
-        whereis $destino
+        echo "Introduce el archivo o directorio a buscar"
+        echo ""
+        read destino
+        locate -e $destino
         ;;
 
     rutaip)
-        read -p "Introduce la página web o ip para trazar la ruta" destino
+        echo "Introduce la página web o ip para trazar la ruta" 
+        echo ""
+        read destino
         traceroute $destino
         ;;
     *)
-        echo "Las opciones son rutarchivo, rutaip o menu"
+        echo "Las opciones son rutarchivo, rutaip o"
         ;;
     esac
 
