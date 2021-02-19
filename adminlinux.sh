@@ -14,6 +14,8 @@ if id -u "$nuevousuario" >/dev/null 2>&1;
 then
 echo "El usuario ya existe."
 else
+    echo "Introduce una contraseña para $nuevousuario"
+    passwd $nuevousuario
     echo "Introduce el nombre de un grupo para el nuevo usuario $nuevousuario:"
     read nuevogrupo
     echo "Describe el nuevo usuario $nuevousuario del grupo $nuevogrupo. Por ejemplo, nombre completo y puesto:"
