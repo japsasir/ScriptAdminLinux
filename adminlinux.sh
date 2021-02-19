@@ -80,17 +80,23 @@ function permisos_usuario() {
             read ugo
             for ugo in "u" "g" "o" ; do
                 case $ugo in
-                    "u") read -p "Quieres aplicar este permiso para el usurario? (y/n) " yesno
-                        if [ $yesno = "y" ] ; then
+                    "u") echo "¿Quieres aplicar este permiso para el usuario? (y/n) " 
+                        read yesno
+                        if [ $yesno = "y" ] ;
+                        then
                             chmod $ugo$ponquita$permiso $archivo
                         fi ;;
-                    "g") read -p "Quieres aplicar este permiso para el grupo? (y/n) " VAR
-                        if [ $yesno = "y" ] ; then
+                    "g") echo "¿Quieres aplicar este permiso para el grupo? (y/n) "
+                        read yesno
+                        if [ $yesno = "y" ] ;
+                        then
                             chmod $ugo$ponquita$permiso $archivo
                         fi ;;
-                    "o") read -p "Quieres aplicar este permiso para otros? (y/n) " VAR
-                        if [ $yesno = "y" ] ; then
-                            chmod $Augo$ponquita$permiso $archivo
+                    "o") echo "¿Quieres aplicar este permiso para otros? (y/n) "
+                        read yesno
+                        if [ $yesno = "y" ] ;
+                        then
+                            chmod $ugo$ponquita$permiso $archivo
                         fi ;;
                 esac
             done
@@ -194,6 +200,7 @@ ColorBlue() {
 #Función menú
 menu() {
     echo -ne "
+SysAdmin Linux.
 ------------------
 Opciones:
 $(ColorGreen '1)') Crear usuario
@@ -248,14 +255,6 @@ $(ColorBlue 'Seleccione una opción:') "
         ;;
     esac
 }
-
-echo "Bienvenido al menú de SysAdmin Linux."
-echo ""
-echo "Este script le ayudará hasta que se familiarice
-con los comandos de consola."
-echo ""
-sleep 3s
-
 # Menú
 clear
 menu
