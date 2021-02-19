@@ -76,9 +76,7 @@ function permisos_usuario() {
             read permiso
             echo "¿Añadir o retirar el permiso? (+/-): " 
             read ponquita
-            echo "Se aplicará a ... (u/g/o)[usuario/grupo/otros]"
-            read ugo
-            for ugo in "u" "g" "o" ; do
+                for ugo in "u" "g" "o" ; do
                 case $ugo in
                     "u") echo "¿Quieres aplicar este permiso para el usuario? (y/n) " 
                         read yesno
@@ -104,12 +102,7 @@ function permisos_usuario() {
             echo
             echo "Los permisos de $archivo tras haber hecho los cambios son: "
             ls -ld $archivo
-            echo
-            echo
-             read -n 1 -p "Pulse una tecla para volver al menú principal..." TECLA
-        else
-            read -n 1 -p "Puesto que no quiere realizar ningún cambio, pulse una tecla para volver al menú principal..." TECLA
-        fi
+    fi
   else
       echo "$archivo no encontrado. Comprueba la ruta del archivo."
       echo ""
