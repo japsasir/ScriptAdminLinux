@@ -14,8 +14,6 @@ if id -u "$nuevousuario" >/dev/null 2>&1;
 then
 echo "El usuario ya existe."
 else
-    echo "Introduce una contraseña para $nuevousuario"
-    passwd $nuevousuario
     echo "Introduce el nombre de un grupo para el nuevo usuario $nuevousuario:"
     read nuevogrupo
     echo "Describe el nuevo usuario $nuevousuario del grupo $nuevogrupo. Por ejemplo, nombre completo y puesto:"
@@ -23,13 +21,12 @@ else
     groupadd $nuevogrupo
     useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
+    echo "Para finalizar, introduce una contraseña para $nuevousuario"
+    passwd $nuevousuario
 fi
     sleep 10s
     clear
 }
-
-
-
 #Función2 habilita_usuario
 function habilita_usuario() {
     clear
@@ -63,20 +60,51 @@ fi
     sleep 10s
     clear
 }
-
-
-
 #Función4 permisos_usuario
 function permisos_usuario() {
-    clear
-    echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
-    read -p "Primero Seleccione un usuario para cambiar sus permisos" user
-    sleep 1s
-    read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
-    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes" #Los permisos
-    read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
-    #Falta comando
-    #Falta mensaje de confirmación
+    echo "Introduce la ruta absoluta del archivo al que quieras modificarle los permisos" 
+    read archivo
+  if test -e $archivo || test -d $archivo; then
+    echo ""
+    echo "Los permisos de $archivo actuales son:"
+    ls -ld $archivo
+    echo ""
+    read -p "¿Quieres cambiar algún permiso de este archivo? (y/n): " yesno
+        if [ $yesno = "y" ] ;
+        then
+            echo "¿Que permiso quieres cambiar? (r/w/x) [Lectura, escritura, ejecución]: " 
+            read permiso
+            echo "¿Añadir o retirar el permiso? (+/-): " ponquita
+            for APLICAR in "u" "g" "o" ; do
+                case $APLICAR in
+                    "u") read -p "Quieres aplicar este permiso para el usurario? (y/n) " yesno
+                        if [ $yesno = "y" ] ; then
+                            chmod $APLICAR$ponquita$permiso $archivo
+                        fi ;;
+                    "g") read -p "Quieres aplicar este permiso para el grupo? (y/n) " VAR
+                        if [ $yesno = "y" ] ; then
+                            chmod $APLICAR$ponquita$permiso $archivo
+                        fi ;;
+                    "o") read -p "Quieres aplicar este permiso para otros? (y/n) " VAR
+                        if [ $yesno = "y" ] ; then
+                            chmod $APLICAR$ponquita$permiso $archivo
+                        fi ;;
+                esac
+            done
+            echo
+            echo
+            echo "Los permisos de $archivo tras haber hecho los cambios son: "
+            ls -ld $archivo
+            echo
+            echo
+             read -n 1 -p "Pulse una tecla para volver al menú principal..." TECLA
+        else
+            read -n 1 -p "Puesto que no quiere realizar ningún cambio, pulse una tecla para volver al menú principal..." TECLA
+        fi
+  else
+      echo "$archivo no encontrado. Comprueba la ruta del archivo."
+      echo ""
+  fi 
     sleep 10s
     clear
 }
