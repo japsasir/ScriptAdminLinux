@@ -8,7 +8,12 @@ function crear_usuario() {
     clear
     echo ""
     echo "Introduce el nombre del nuevo usuario:"
-    read nuevousuario
+    read nuevousuario    
+
+if id -u "$nuevousuario" >/dev/null 2>&1;
+then
+echo "El usuario ya existe."
+else
     echo "Introduce el nombre de un grupo para el nuevo usuario $nuevousuario:"
     read nuevogrupo
     echo "Describe el nuevo usuario $nuevousuario del grupo $nuevogrupo. Por ejemplo, nombre completo y puesto:"
@@ -16,32 +21,49 @@ function crear_usuario() {
     groupadd $nuevogrupo
     useradd -g $nuevogrupo -c "$descripcion" $nuevousuario
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> y con la siguiente descripción:  <$descripcion>."
+fi
     sleep 10s
     clear
-    menu
+
 }
+
+
+
 #Función2 habilita_usuario
 function habilita_usuario() {
     clear
     echo ""
     read -p "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
+if  id -u "$user" >/dev/null 2>&1;
+then
     passwd -u $user
-    echo "El usuario <$user> ha sido deshabilitado"
+    echo "El usuario <$user> ha sido habilitado"
+else
+    echo "El usuario <$user> no existe."
+fi
     sleep 10s
     clear
-    menu
+
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
     clear
     read -p "Menú de deshabilitación de usuario. Introduzca el nombre del usuario a deshabilitar :" user
+
+if  id -u "$user" >/dev/null 2>&1;
+then
     passwd -l $user
     echo "El usuario <$user> ha sido deshabilitado"
-    echo ""
+else
+    echo "El usuario <$user> no existe."
+fi
     sleep 10s
     clear
-    menu
+
 }
+
+
+
 #Función4 permisos_usuario
 function permisos_usuario() {
     clear
@@ -68,7 +90,6 @@ function copia_usuario() {
     echo "La copia de seguridad ha sido creada en /backup/$user"
     sleep 10s
     clear
-    menu
 }
 #Función6 conectado_usuario
 function conectado_usuario() {
@@ -80,7 +101,6 @@ function conectado_usuario() {
     finger -l
     sleep 10s
     clear
-    menu
 }
 #Función7 espacio_disco
 function espacio_disco() {
@@ -89,7 +109,6 @@ function espacio_disco() {
     free -h
     sleep 10s
     clear
-    menu
 }
 #Función8 trazar_ruta
 function trazar_ruta() {
@@ -122,7 +141,7 @@ function trazar_ruta() {
 
     sleep 10s
     clear
-    menu
+
     # >updatedb && locate $destino> es lo que sale en los apuntes
     # Introducir variables
     # Los comandos son los correctos pero hace falta configurar subsecciones
@@ -211,8 +230,7 @@ echo ""
 echo "Este script le ayudará hasta que se familiarice
 con los comandos de consola."
 echo ""
-echo "Asegúrese de haber lanzado el script con sudo."
-echo ""
+sleep 3s
 
 # Menú
 clear
