@@ -74,20 +74,23 @@ function permisos_usuario() {
         then
             echo "¿Que permiso quieres cambiar? (r/w/x) [Lectura, escritura, ejecución]: " 
             read permiso
-            echo "¿Añadir o retirar el permiso? (+/-): " ponquita
-            for APLICAR in "u" "g" "o" ; do
-                case $APLICAR in
+            echo "¿Añadir o retirar el permiso? (+/-): " 
+            read ponquita
+            echo "Se aplicará a ... (u/g/o)[usuario/grupo/otros]"
+            read ugo
+            for ugo in "u" "g" "o" ; do
+                case $ugo in
                     "u") read -p "Quieres aplicar este permiso para el usurario? (y/n) " yesno
                         if [ $yesno = "y" ] ; then
-                            chmod $APLICAR$ponquita$permiso $archivo
+                            chmod $ugo$ponquita$permiso $archivo
                         fi ;;
                     "g") read -p "Quieres aplicar este permiso para el grupo? (y/n) " VAR
                         if [ $yesno = "y" ] ; then
-                            chmod $APLICAR$ponquita$permiso $archivo
+                            chmod $ugo$ponquita$permiso $archivo
                         fi ;;
                     "o") read -p "Quieres aplicar este permiso para otros? (y/n) " VAR
                         if [ $yesno = "y" ] ; then
-                            chmod $APLICAR$ponquita$permiso $archivo
+                            chmod $Augo$ponquita$permiso $archivo
                         fi ;;
                 esac
             done
