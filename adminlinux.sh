@@ -32,7 +32,7 @@ fi
 function habilita_usuario() {
     clear
     echo ""
-    echo"Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:"
+    echo "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:"
     read user
 if  id -u "$user" >/dev/null 2>&1;
 then
