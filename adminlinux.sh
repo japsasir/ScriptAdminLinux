@@ -24,7 +24,6 @@ else
 fi
     sleep 10s
     clear
-
 }
 
 
@@ -33,7 +32,7 @@ fi
 function habilita_usuario() {
     clear
     echo ""
-    read -p "Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
+    echo"Menú de habilitación de usuario. Introduzca el nombre del usuario a habilitar:" user
 if  id -u "$user" >/dev/null 2>&1;
 then
     passwd -u $user
@@ -43,7 +42,6 @@ else
 fi
     sleep 10s
     clear
-
 }
 #Función3 deshabilitar_usuario
 function deshabilita_usuario() {
@@ -59,7 +57,6 @@ else
 fi
     sleep 10s
     clear
-
 }
 
 
@@ -97,7 +94,6 @@ function conectado_usuario() {
     echo "Si la herramienta no funciona, ejecutar <sudo apt install finger en la terminal>"
     echo ""
     echo "Estos son los usuarios conectados actualmente:"
-    #Se puede usar 'who' con un parámetro, pero es menos informativo.
     finger -l
     sleep 10s
     clear
@@ -114,9 +110,8 @@ function espacio_disco() {
 function trazar_ruta() {
     clear
     echo "Bienvenido al trazador de rutas."
-    echo "Introduce <rutarchivo> para buscar en el sistema de archivos"
-    echo "Introduce <rutaip> para buscar la ruta a una web o url"
-    echo "Introduce <menu> para volver al menú principal"
+    echo "Introduce <rutarchivo> para buscar en el sistema de archivos o <rutaip> para trazar la ruta a una url"
+    echo ""
     read destino
     clear
     case $destino in
@@ -129,11 +124,6 @@ function trazar_ruta() {
         read -p "Introduce la página web o ip para trazar la ruta" destino
         traceroute $destino
         ;;
-
-    menu)
-        echo ""
-        ;;
-
     *)
         echo "Las opciones son rutarchivo, rutaip o menu"
         ;;
@@ -141,11 +131,6 @@ function trazar_ruta() {
 
     sleep 10s
     clear
-
-    # >updatedb && locate $destino> es lo que sale en los apuntes
-    # Introducir variables
-    # Los comandos son los correctos pero hace falta configurar subsecciones
-
 }
 ##FUNCIÓN MENU Y AMIGOS##
 
