@@ -35,7 +35,7 @@ function crea_usuario() {
     echo "Nuevo usuario <$nuevousuario> creado para el grupo: <$nuevogrupo> con descripción:  <$descripcion>."
     sleep 1s
     echo ""
-    sleep 4s
+    sleep 5s
     clear
 }
 #Habilitar un usuario
@@ -47,7 +47,7 @@ then passwd -u $usuario
 else echo "El usuario no existe" 
 fi
     echo ""
-    sleep 4s
+    sleep 5s
         clear
 }
 #Deshabilitar un usuario
@@ -59,19 +59,57 @@ if id -u "$usuario" >/dev/null 2>&1;
     else "El usuario no existe"
 fi
     echo ""
-sleep 4s
+sleep 5s
     clear
 }
 #Cambiar permisos de usuario
 function permisos_usuario() {
-    echo "Aquí podrá cambiar los permisos que tiene un usuario sobre un fichero o directorio."
-    read -p "Primero Seleccione un usuario para cambiar sus permisos" user
-    sleep 1s
-    read -p "Seleccione la ruta del archivo o directorio para modificar los permisos de <$user> sobre el mismo." ruta
-    echo "Los permisos para el usuario <$user> sobre el archivo o directorio <$ruta> son los siguientes"
-    read -p "Introduce los permisos que quieres asignar al usuario sobre este archivo o directorio, en formato numérico"
+    echo "Ruta del archivo que quieras modificar los permisos: " 
+    read archivo
+  if test -e $archivo || test -d $archivo; then
     echo ""
-    sleep 4s
+    echo "Estos son los premisos de $archivo: "
+    ls -ld $archivo
+    echo ""
+    read -p "¿Modificar permiso del archivo? (s/n): " sn
+        if [ $sn = "s" ] ;
+        then
+            echo "Seleccione un permiso (r/w/x) [Lectura, escritura, ejecución]: " 
+            read permiso
+            echo "¿Añadir o quitar permiso? (+/-): " 
+            read dar
+                for ugo in "u" "g" "o" ; do
+                case $ugo in
+                    "u") echo "¿Aplicar este permiso para el usuario? (s/n) " 
+                        read sn
+                        if [ $sn = "s" ] ;
+                        then
+                            chmod $ugo$dar$permiso $archivo
+                        fi ;;
+                    "g") echo "¿Aplicar este permiso para el grupo? (s/n) "
+                        read sn
+                        if [ $sn = "s" ] ;
+                        then
+                            chmod $ugo$dar$permiso $archivo
+                        fi ;;
+                    "o") echo "¿Aplicar este permiso para otros? (s/n) "
+                        read sn
+                        if [ $sn = "s" ] ;
+                        then
+                            chmod $ugo$dar$permiso $archivo
+                        fi ;;
+                esac
+            done
+            echo
+            echo
+            echo "Estos son los permisos de $archivo: "
+            ls -ld $archivo
+    fi
+  else
+      echo "La ruta o $archivo no existe."
+      echo ""
+  fi 
+    sleep 5s
         clear
 }
 #Copia de seguridad
@@ -80,7 +118,7 @@ function copia_usuario() {
     echo "Creando copia de seguridad. Esto puede tardar algún tiempo..."
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido creada en /backup/$user"
-    sleep 4s
+    sleep 5s
         clear
 }
 #Usuario logueados
@@ -89,7 +127,7 @@ function conectado_usuario() {
     who -h
     sleep 1s
     echo ""
-    sleep 4s
+    sleep 5s
         clear
 }
 #Espacio libre en disco.
@@ -98,7 +136,7 @@ function espacio_disco() {
     df -h
     sleep 1s
     echo ""
-    sleep 4s
+    sleep 5s
         clear
 }
 #Trazado de rutas ip o url
@@ -108,7 +146,7 @@ function trazar_ruta() {
     echo "Introduce <rutaip> para buscar la ruta a una web o url" 
     echo "Introduce <menu> para volver al menú principal"
     read destino
-    sleep 4s
+    sleep 5s
     clear
     # >updatedb && locate $destino> es lo que sale en los apuntes
 case $destino in 
@@ -130,7 +168,7 @@ case $destino in
     echo "Las opciones son rutarchivo, rutaip o menu"
     ;;
     esac
-    sleep 4s
+    sleep 5s
         clear
 }
 
