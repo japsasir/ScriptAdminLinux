@@ -115,8 +115,9 @@ function permisos_usuario() {
 #Copia de seguridad
 function copia_usuario() {
     read -p "Usuario al que le va a hacer una copia de seguridad de su directorio: " user
-    sleep 1s
+    sleep 2s
     echo "Ejecutando copia de seguridad, espere."
+    sleep 3s
     mkdir /backup
     tar -zcvpf /backup/$user-$(date +%d-%m-%Y).tar.gz /home/$user
     echo "La copia de seguridad ha sido realizada con exito." 
@@ -135,42 +136,37 @@ function conectado_usuario() {
 }
 #Espacio libre en disco.
 function espacio_disco() {
-    echo "Aquí podrá ver un resumen del uso del disco. La cantidad libre será mostrado bajo la columna <Available>" 
-    df -h
-    sleep 1s
-    echo ""
-    sleep 5s
-        clear
-}
-#Trazado de rutas ip o url
-function trazar_ruta() {
-    echo "Bienvenido al trazador de rutas."
-    echo "Introduce <rutarchivo> para buscar en el sistema de archivos" 
-    echo "Introduce <rutaip> para buscar la ruta a una web o url" 
-    echo "Introduce <menu> para volver al menú principal"
-    read destino
-    sleep 5s
+    echo "El proceso se congelará durante 15s."
+    echo "Uso del disco: "
+    free -h
+    sleep 15s
     clear
-    # >updatedb && locate $destino> es lo que sale en los apuntes
-case $destino in 
+}
+#Trazado de ruta
+function trazar_ruta() {
+    echo "Introduce /ruta/archivo para buscar en el sistema de archivos o ruta/ip para trazar la ruta a una URL: "
+    echo ""
+    read destino
+    clear
+    case $destino in
     rutarchivo)
-    read -p "Introduce el archivo o directorio a buscar" destino
-    whereis $destino
-    ;;
+        echo "Archivo o directorio a buscar: "
+        echo ""
+        read destino
+        locate -e $destino
+        ;;
 
     rutaip)
-    read -p "Introduce la página web o ip para trazar la ruta" destino
-    traceroute $destino
-    ;;
-
-    menu)
-    echo ""
-    ;;
-
+        echo "Introduce página web o ip para trazar la ruta: " 
+        echo ""
+        read destino
+        traceroute $destino
+        ;;
     *)
-    echo "Las opciones son rutarchivo, rutaip o menu"
-    ;;
+        echo "No ha seleccionado una opción correcta."
+        ;;
     esac
+
     sleep 5s
         clear
 }
